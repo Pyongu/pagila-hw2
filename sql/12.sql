@@ -6,3 +6,11 @@
  * Create a select statement that lists the titles of all tables with the 'Trailers' special_feature.
  * Inner join the queries above.
  */
+SELECT
+    title
+FROM
+    film
+WHERE
+    ARRAY['Behind the Scenes', 'Trailers'] <@ special_features
+ORDER BY
+    title;

@@ -6,8 +6,14 @@
  */
 SELECT title
 FROM film
-JOIN inventory USING (film_id)
-JOIN rental USING (inventory_id)
-JOIN customer USING (customer_id)
-WHERE customer_id = 1 (
-    SELECT cust
+WHERE title in  (
+    SELECT title
+    from film
+    Join inventory USING (film_id)
+    JOIN rental USING (inventory_id)
+    WHERE customer_id = 1
+    GROUP BY customer_id, title
+    HAVING count(*) > 1
+    ORDER BY customer_id ASC
+)
+ORDER BY title;

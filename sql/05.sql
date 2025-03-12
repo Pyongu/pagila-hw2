@@ -11,3 +11,12 @@
  * For this problem, you should use the NOT IN clause;
  * in problem 05b you will use the LEFT JOIN clause.
  */
+SELECT last_name, first_name
+from actor
+WHERE last_name || ' ' ||first_name NOT IN (
+    SELECT last_name ||' ' || first_name
+    from customer
+    GROUP BY last_name, first_name
+    ORDER BY last_name ASC
+)
+ORDER BY last_name ASC, first_name ASC;
